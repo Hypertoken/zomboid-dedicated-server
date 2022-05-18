@@ -84,7 +84,7 @@ function apply_postinstall_config() {
     "$EDIT_CONFIG" "$SERVER_CONFIG" "PauseEmpty" "$PAUSE_ON_EMPTY"
 
     # Set the Server Publicity status
-    "$EDIT_CONFIG" "$SERVER_CONFIG" "Open" "$PUBLIC_SERVER"
+    "$EDIT_CONFIG" "$SERVER_CONFIG" "Public" "$PUBLIC_SERVER"
 
     # Set the Server query Port
     "$EDIT_CONFIG" "$SERVER_CONFIG" "DefaultPort" "$QUERY_PORT"
@@ -127,7 +127,14 @@ function test_first_run() {
 function update_server() {
     printf "\n### Updating Project Zomboid Server...\n"
 
-    "$STEAM_PATH" +runscript "$STEAM_INSTALL_FILE"
+    if [[ ! -f "$SERVER_CONFIG" ]] || [[ ! -f "$SERVER_RULES_CONFIG" ]]; then
+        printf "\n### This is the first run.\nStarting server for %s seconds\n" "$TIMEOUT"
+        "$STEAM_PATH" +runscript "$STEAM_INSTALL_FILE"
+        TIMEOUT=0
+    else
+        printf "\n### This is not the first run.\n"
+        TIMEOUT=0
+    fi
 
     printf "\n### Project Zomboid Server updated.\n"
 }
