@@ -85,6 +85,9 @@ function apply_postinstall_config() {
 
     # Set the Server Publicity status
     "$EDIT_CONFIG" "$SERVER_CONFIG" "Public" "$PUBLIC_SERVER"
+    
+    # Set the Server Open status
+    "$EDIT_CONFIG" "$SERVER_CONFIG" "Open" "$OPEN_SERVER"
 
     # Set the Server query Port
     "$EDIT_CONFIG" "$SERVER_CONFIG" "DefaultPort" "$QUERY_PORT"
@@ -214,6 +217,9 @@ function set_variables() {
 
     # Set the Server Publicity variable
     PUBLIC_SERVER=${PUBLIC_SERVER:-"true"}
+
+    # Set the Server Publicity variable
+    OPEN_SERVER=${OPEN_SERVER:-"false"}
 
     # Set the IP Query Port variable
     QUERY_PORT=${QUERY_PORT:-"16261"}
