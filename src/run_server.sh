@@ -76,6 +76,9 @@ function apply_postinstall_config() {
 
     # Set the Mod names
     "$EDIT_CONFIG" "$SERVER_CONFIG" "Mods" "$MOD_NAMES"
+    
+    # Set the SpawnPoint
+    "$EDIT_CONFIG" "$SERVER_CONFIG" "SpawnPoint" "$SPAWN_POINT"
 
     # Set the Mod Workshop IDs
     "$EDIT_CONFIG" "$SERVER_CONFIG" "WorkshopItems" "$MOD_WORKSHOP_IDS"
@@ -207,6 +210,9 @@ function set_variables() {
 
     # Set the Maximum RAM variable
     MAX_RAM=${MAX_RAM:-"4096m"}
+
+    # Set the SpawnPoint
+    SPAWN_POINT=${SPAWN_POINT:-""}
 
     # Set the Mods to use from workshop
     MOD_NAMES=${MOD_NAMES:-""}
