@@ -35,6 +35,8 @@ services:
       - "BIND_IP=0.0.0.0"
       - "GAME_PORT=8766"
       - "GAME_VERSION=public"
+      - "UPDATE_SERVER=false"
+      - "BETA_SERVER=true"
       - "MAX_PLAYERS=16"
       - "MAX_RAM=4096m"
       - "MOD_NAMES="
@@ -51,6 +53,8 @@ services:
       - "SERVER_PASSWORD="
       - "STEAM_VAC=true"
       - "USE_STEAM=true"
+      - "UPDATE_SERVER=false"
+      - "BETA_SERVER=true"
     ports:
       - target: 8766
         published: 8766

@@ -134,27 +134,23 @@ function test_first_run() {
 
 # Update the server
 function update_server() {
-    printf "\n### Updating Project Zomboid Server...\n"
-
-    if [[ ! -f "$SERVER_CONFIG" ]] || [[ ! -f "$SERVER_RULES_CONFIG" ]]; then
-        printf "\n### This is the first run.\nStarting server for %s seconds\n" "$TIMEOUT"
-        "$STEAM_PATH" +runscript "$STEAM_INSTALL_FILE"
-        TIMEOUT=0
+    if [[ -z "$UPDATE_SERVER" ]] || [[ "$UPDATE_SERVER" == "false" ]]; then
+        printf"\n### Skipping update of Project Zomboid...\n"
     else
-        printf "\n### This is not the first run.\n"
-        TIMEOUT=0
+        printf "\n### Updating Project Zomboid Server...\n"
+        "$STEAM_PATH" +runscript "$STEAM_INSTALL_FILE"
+        printf "\n### Project Zomboid Server updated.\n"
     fi
-
-    printf "\n### Project Zomboid Server updated.\n"
 }
 
 # Apply user configuration to the server
 function apply_preinstall_config() {
     printf "\n### Applying Pre Install Configuration...\n"
-
-    # Set the selected game version
-    sed -i "s/beta .* /beta $GAME_VERSION /g" "$STEAM_INSTALL_FILE"
-
+    if [[ -z "$BETA_SERVER" ]] || [[ "$BETA_SERVER" == "false" ]]; then
+        # Set the selected game version
+        sed -i "s/-beta .* /$GAME_VERSION /g" "$STEAM_INSTALL_FILE"
+    else
+        sed -i "s/beta .* /beta $GAME_VERSION /g" "$STEAM_INSTALL_FILE"
     printf "\n### Pre Install Configuration applied.\n"
 }
 
@@ -212,7 +208,7 @@ function set_variables() {
     MAX_PLAYERS=${MAX_PLAYERS:-"16"}
 
     # Set the Maximum RAM variable
-    MAX_RAM=${MAX_RAM:-"4096m"}
+    MAX_RAM=${MAX_RAM:-"8192m"}
 
     # Set the SpawnPoint
     SPAWN_POINT=${SPAWN_POINT:-""}
@@ -244,6 +240,12 @@ function set_variables() {
 
     # Set Steam VAC Protection variable
     STEAM_VAC=${STEAM_VAC:-"true"}
+
+    # Set SteamCMD update flag
+    UPDATE_SERVER=${UPDATE_SERVER:-"false"}
+
+    # Set SteamCMD update flag
+    BETA_SERVER=${BETA_SERVER:-"true"}
 
     # Set server type variable
     if [[ -z "$USE_STEAM" ]] || [[ "$USE_STEAM" == "true" ]]; then
