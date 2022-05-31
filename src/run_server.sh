@@ -135,7 +135,7 @@ function test_first_run() {
 # Update the server
 function update_server() {
     if [[ -z "$UPDATE_SERVER" ]] || [[ "$UPDATE_SERVER" == "false" ]]; then
-        printf"\n### Skipping update of Project Zomboid...\n"
+        printf "\n### Skipping update of Project Zomboid...\n"
     else
         printf "\n### Updating Project Zomboid Server...\n"
         "$STEAM_PATH" +runscript "$STEAM_INSTALL_FILE"
