@@ -152,6 +152,7 @@ function apply_preinstall_config() {
     else
         sed -i "s/beta .* /beta $GAME_VERSION /g" "$STEAM_INSTALL_FILE"
     printf "\n### Pre Install Configuration applied.\n"
+    fi
 }
 
 # Change the folder permissions for install and save directory
