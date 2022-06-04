@@ -75,7 +75,7 @@ function apply_postinstall_config() {
     "$EDIT_CONFIG" "$SERVER_CONFIG" "MaxPlayers" "$MAX_PLAYERS"
 
     # Set the Mod names
-    "$EDIT_CONFIG" "$SERVER_CONFIG" "Mods" "$MOD_NAMES"
+    #"$EDIT_CONFIG" "$SERVER_CONFIG" "Mods" "$MOD_NAMES"
     
     # Set the SpawnPoint 
     "$EDIT_CONFIG" "$SERVER_CONFIG" "SpawnPoint" "$SPAWN_POINT"
@@ -84,7 +84,7 @@ function apply_postinstall_config() {
     "$EDIT_CONFIG" "$SERVER_CONFIG" "SpawnItems" "$SPAWN_ITEMS"
 
     # Set the Mod Workshop IDs
-    "$EDIT_CONFIG" "$SERVER_CONFIG" "WorkshopItems" "$MOD_WORKSHOP_IDS"
+    #"$EDIT_CONFIG" "$SERVER_CONFIG" "WorkshopItems" "$MOD_WORKSHOP_IDS"
 
     # Set the Pause on Empty Server
     "$EDIT_CONFIG" "$SERVER_CONFIG" "PauseEmpty" "$PAUSE_ON_EMPTY"
@@ -218,8 +218,8 @@ function set_variables() {
     SPAWN_ITEMS=${SPAWN_ITEMS:-""}
 
     # Set the Mods to use from workshop
-    MOD_NAMES=${MOD_NAMES:-""}
-    MOD_WORKSHOP_IDS=${MOD_WORKSHOP_IDS:-""}
+    #MOD_NAMES=${MOD_NAMES:-""}
+    #MOD_WORKSHOP_IDS=${MOD_WORKSHOP_IDS:-""}
 
     # Set the Pause on Empty variable
     PAUSE_ON_EMPTY=${PAUSE_ON_EMPTY:-"true"}
